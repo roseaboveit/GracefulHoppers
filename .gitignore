@@ -15,8 +15,6 @@
 /coverage
 /coverage/*
 
-# Ignore the secrets
-/config/initializers/secret_token.rb
-/config/application.yml
-
 /.DS_Store
+# Ignore application configuration
+/config/application.yml
