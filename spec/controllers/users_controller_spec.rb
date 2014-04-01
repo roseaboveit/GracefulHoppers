@@ -94,11 +94,13 @@ describe UsersController do
 
   describe "GET show" do
     it "locates the requested User" do
-      
+      get :show, id: @user.id
+      expect(assigns(:user).id).to eq(@user.id)
     end
 
     it "renders the show page" do
-      
+      get :show, id: @user.id
+      expect(response).to render_template :show
     end
   end
 
