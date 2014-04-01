@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe UsersController do
-  before :each do
-      @user = create(:user) 
-  end
+  # before :each do
+  #     @user = create(:user) 
+  # end
 
 
   describe "GET new" do
@@ -21,7 +21,7 @@ describe UsersController do
 
       it "redirects the user" do
         post :create, user: attributes_for(:user)
-        expect(response).to redirect_to @user
+        expect(response).to redirect_to user_path(assigns(:user).id)
       end
     end
 
@@ -32,7 +32,7 @@ describe UsersController do
 
       it "re-renders the new page" do
         post :create, user: attributes_for(:user, username: nil)
-        expect(response).to redirect_to new_list_path
+        expect(response).to redirect_to new_user_path
       end
 
       it "displays an error message for the user" do
