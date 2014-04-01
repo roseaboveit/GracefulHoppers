@@ -106,11 +106,13 @@ describe UsersController do
 
   describe "GET index" do
     it "locates the users and populates a user array" do
-      
+      get :index
+      expect(assigns(:users)).to eq([@user])
     end
 
     it "renders the index page" do
-      
+      get :index
+      expect(response).to render_template :index
     end
   end
 end
