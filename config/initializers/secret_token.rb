@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-GracefulHoppers::Application.config.secret_key_base = GRACEFUL_HOPPER_SECRET_KEY
+GracefulHoppers::Application.config.secret_key_base = ENV['GRACEFUL_HOPPER_SECRET_KEY']
