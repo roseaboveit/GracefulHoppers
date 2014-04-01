@@ -33,6 +33,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to root_path, notice: "User #{@user.username} has been deleted"
+  end
+
   private
 
   def user_params

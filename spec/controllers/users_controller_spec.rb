@@ -5,7 +5,6 @@ describe UsersController do
       @user = create(:user) 
   end
 
-
   describe "GET new" do
     it "displays the new template" do
       get :new
@@ -113,6 +112,27 @@ describe UsersController do
     it "renders the index page" do
       get :index
       expect(response).to render_template :index
+    end
+  end
+
+  describe "DELETE destroy" do
+    it "locates the requested User" do
+      delete :destroy, id: @user.id
+      expect(assigns(:user).id).to eq(@user.id)
+    end
+
+    it "redirects to root_path" do
+      delete :destroy, id: @user.id
+      expect(response).to redirect_to root_path
+    end
+
+    it "decreases the user count by 1" do
+      expect{delete :destroy, id: @user.id}.to change(User, :count).by(-1)
+    end
+
+    it "displays a flash message notifying of successful deletion" do
+      delete :destroy, id: @user.id
+      expect(flash[:notice]).to_not be_blank
     end
   end
 end
