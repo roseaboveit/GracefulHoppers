@@ -22,10 +22,12 @@ group :development, :test do
   gem "guard-rspec"
   gem "terminal-notifier-guard"
   gem "factory_girl_rails"
-  gem 'simplecov', :require => false
   gem 'better_errors'
   gem "binding_of_caller"
 end
+
+gem "codeclimate-test-reporter", group: :test, require: nil
+gem 'simplecov', '~> 0.7.1', :require => false, :group => :test
 
 group :production do
   gem 'rails_12factor'
