@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe UsersController do
-  # before :each do
-  #     @user = create(:user) 
-  # end
+  before :each do
+      @user = create(:user) 
+  end
 
 
   describe "GET new" do
@@ -44,40 +44,50 @@ describe UsersController do
 
   describe "GET edit" do
     it "locates the requested User" do
-      
+      get :edit, id: @user.id
+      expect(assigns(:user).id).to eq(@user.id)
     end
 
     it "renders the edit page" do
-      
+      get :edit, id: @user.id
+      expect(response).to render_template :edit
     end
   end
 
   describe "PATCH update" do
     context "with valid attributes" do
       it "locates the correct user" do
-        
+        patch :update, id: @user.id, user: attributes_for(:user)
+        expect(assigns(:user).id).to eq(@user.id)
       end
 
       it "updates the user to the database" do
-        
+        patch :update, id: @user.id, user: attributes_for(:user, name: "Married Name")
+        @user.reload
+        expect(@user.name).to eq("Married Name")
       end
 
       it "redirects the user to the user's show pages" do
-        
+        patch :update, id: @user.id, user: attributes_for(:user, name: "Married Name")
+        expect(response).to redirect_to @user
       end
     end
 
     context "with invalid attributes" do
       it "displays an error message for the user" do
-        
+        patch :update, id: @user.id, user: attributes_for(:user, name: nil)
+        expect(flash[:notice]).to_not be_blank
       end
 
       it "does not update the user in the database" do
-        
+        patch :update, id: @user.id, user: attributes_for(:user, name: nil)
+        @user.reload
+        expect(@user.name).to_not be_nil
       end
 
       it "re-renders the edit page" do
-        
+        patch :update, id: @user.id, user: attributes_for(:user, name: nil)
+        expect(response).to redirect_to edit_user_path(@user.id)
       end
     end
   end
