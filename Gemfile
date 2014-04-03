@@ -24,7 +24,17 @@ group :development, :test do
   gem "factory_girl_rails"
   gem 'better_errors'
   gem "binding_of_caller"
+  gem 'capybara'
 end
+
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+end
+
+gem 'therubyracer', platforms: :ruby
 
 gem "codeclimate-test-reporter", group: :test, require: nil
 gem 'simplecov', '~> 0.7.1', :require => false, :group => :test
