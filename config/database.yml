@@ -13,5 +13,6 @@ test:
 production:
   adapter: postgresql
   database: graceful_hoppers_production
+  user: 'ubuntu'
   pool: 5
   timeout: 5000
