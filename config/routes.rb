@@ -1,5 +1,11 @@
 GracefulHoppers::Application.routes.draw do
+  #devise_for :users
+
+  post '/auth/:provider/callback' => 'sessions#create'
+  get '/auth/:provider/callback'  => 'sessions#create'
+  
   get "welcome/index"
+  
   resources :users
   resources :session, only: [:new, :create, :destroy]
 

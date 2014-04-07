@@ -29,6 +29,28 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
+      :provider => 'twitter',
+      :uid => '123545',
+      :info => {
+                :name => 'natasha',
+                :username => 'NatashaTheRobot'
+                }
+      # etc.
+    })
+  omniauth_hash = {
+      :provider => 'twitter',
+      :uid => '123545',
+      :info => {
+                :name => 'natasha',
+                :username => 'NatashaTheRobot'
+                }
+      # etc.
+    }
+  OmniAuth.config.add_mock(:twitter, omniauth_hash)
+
+  config.include Devise::TestHelpers, :type => :controller
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.include FactoryGirl::Syntax::Methods
