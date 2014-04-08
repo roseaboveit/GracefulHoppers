@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GracefulHoppers</title>
+  <title>Graceful Hoppers</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <link rel="shortcut icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
 </head>
@@ -20,7 +21,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Graceful Hoppers</a>
+      <span class="navbar-brand">
+        <% if @current_user %>
+          <%= link_to image_tag('Grasshopper_icon.png', height: 30), home_path(@current_user.id) %>
+        <% else %>
+          <%= image_tag('Grasshopper_icon.png', height: 30) %>
+        <% end %>
+      Graceful Hoppers</span>
+
+<!-- 
+      <img src='/assets/Grasshopper_icon.png' alt="..." class="img-circle" style="min-height:50px;height:50px;">
+      <a class="navbar-brand" href="#">Graceful Hoppers</a> -->
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
