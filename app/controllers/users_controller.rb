@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    check_email
   end
 
   def update
@@ -30,5 +31,13 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :username, :twitter_uid, :email, :unit, :description, :admin)
+  end
+
+  def check_email
+    if @user.email == 'example@example.com'
+      @placeholder = nil
+    else
+      @placeholder = @user.email
+    end
   end
 end

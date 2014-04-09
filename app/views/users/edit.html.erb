@@ -1,0 +1,15 @@
+<div class="container">
+  <p>
+    It is always good to keep your profile up to date. <br>
+    Make sure we have a good email address for you. <br>
+    Also update your profile with some introductory information about yourself. <br>
+  </p>
+
+  <%= bootstrap_form_for @user do |f| %>
+    <%= f.text_field :email, value: @placeholder %><br />
+
+    <%= f.text_area :description %><br />
+
+    <%= f.submit %>
+  <% end %>
+</div>
