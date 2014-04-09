@@ -1,8 +1,8 @@
 GracefulHoppers::Application.routes.draw do
   #devise_for :users
 
-  post '/auth/:provider/callback' => 'sessions#create'
-  get '/auth/:provider/callback'  => 'sessions#create'
+  post '/auth/:provider/callback' => 'session#create'
+  get '/auth/:provider/callback'  => 'session#create'
   
   get "welcome/index"
   
@@ -10,8 +10,8 @@ GracefulHoppers::Application.routes.draw do
   resources :session, only: [:new, :create, :destroy]
 
   match '/signup', to: 'users#new', via: :get
-  match '/signin', to: 'session#new', via: [:get, :post]
-  match '/signout', to: 'session#destroy', via: :delete
+  match '/signin', to: 'session#new', via: [:get, :post], as: :signin
+  match '/signout', to: 'session#destroy', via: :delete, as: :signout
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
