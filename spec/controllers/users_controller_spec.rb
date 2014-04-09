@@ -5,42 +5,6 @@ describe UsersController do
       @user = create(:user) 
   end
 
-  describe "GET new" do
-    it "displays the new template" do
-      get :new
-      expect(response).to render_template :new
-    end
-  end
-
-  describe "POST create" do
-    context "with valid attributes" do
-      it "saves the user to the database" do
-        expect { post :create, user: attributes_for(:user) }.to change(User, :count).by(1)
-      end
-
-      it "redirects the user" do
-        post :create, user: attributes_for(:user)
-        expect(response).to redirect_to user_path(assigns(:user).id)
-      end
-    end
-
-    context "with invalid attributes" do
-      it "does not save the user to the database" do
-        expect { post :create, user: attributes_for(:user, username: nil) }.to_not change(User, :count).by(1)
-      end
-
-      it "re-renders the new page" do
-        post :create, user: attributes_for(:user, username: nil)
-        expect(response).to redirect_to new_user_path
-      end
-
-      it "displays an error message for the user" do
-        post :create, user: attributes_for(:user, username: nil)
-        expect(flash[:notice]).to_not be_blank
-      end
-    end
-  end
-
   describe "GET edit" do
     it "locates the requested User" do
       get :edit, id: @user.id

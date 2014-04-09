@@ -1,6 +1,3 @@
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
-
 require 'simplecov'
 SimpleCov.start
 
@@ -29,6 +26,14 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
+
+  config.before(:suite) do
+
+    OmniAuth.config.test_mode = true
+
+    OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new(
+      {uid: '1234', credentials: {token: '123456', secret: '123456'}, info: {email: "a@b.com", name: "Bookis", nickname: "bookis"}})
+  end
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.include FactoryGirl::Syntax::Methods
