@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
 
   def self.from_omniauth(auth)
-    where(auth.slice("twitter_uid")).first || create_from_omniauth(auth)
+    User.where(twitter_uid: auth['uid']).take || create_from_omniauth(auth)
   end
 
   def self.create_from_omniauth(auth)
