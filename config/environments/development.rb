@@ -15,7 +15,18 @@ GracefulHoppers::Application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
-  config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              "smtp.mandrillapp.com",
+    port:                 587,
+    enable_starttls_auto: true,
+    user_name:            "ms.whitney.levis@gmail.com", # YOUR MANDRILL USERNAME
+    password:             ENV["MANDRILL_API_KEY"], # A MANDRILL API KEY
+    authentication:       'login',
+    domain:               'yourdomain.com'
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
