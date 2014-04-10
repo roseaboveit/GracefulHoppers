@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
       user.unit = 0
     end
   end
+
+  def welcome
+    Notifier.introduction(self).deliver
+  end
 end

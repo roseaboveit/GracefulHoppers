@@ -14,7 +14,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    check_email
     if @user.update(user_params)
+      unless @placeholder
+        Notifier.introduction(@user).deliver
+      end
       redirect_to @user
     else
       redirect_to edit_user_path(@user.id), notice: "Please use only valid inputs."

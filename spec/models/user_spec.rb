@@ -27,4 +27,18 @@ describe User do
       expect(build(:user, unit: "a")).to be_invalid
     end
   end
+
+  describe "sends emails" do
+    before :each do
+      @user = create(:user) 
+    end
+
+    it "sends a welcome email"  do
+      # Notifier.any_instance.should_receive(:deliver).and_return(true)
+
+      @user.welcome
+      expect(ActionMailer::Base.deliveries.last.to).to eq([@user.email])
+    end
+
+  end
 end
