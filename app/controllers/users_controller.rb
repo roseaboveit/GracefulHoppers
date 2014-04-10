@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    check_email
     if @user.update(user_params)
       unless @placeholder
         Notifier.introduction(@user).deliver
