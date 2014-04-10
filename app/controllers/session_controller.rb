@@ -9,8 +9,10 @@ class SessionController < ApplicationController
 
     if user.email == 'example@example.com'
       redirect_to edit_user_path(user.id), notice: "Twitter Authenticated! Please fill out your profile."
-    else
+    elsif user.email
       redirect_to root_path, notice: "Signed In!"
+    else
+      redirect_to root_path, notice: "There was an error"
     end
   end
 
