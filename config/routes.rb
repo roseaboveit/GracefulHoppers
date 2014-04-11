@@ -9,6 +9,10 @@ GracefulHoppers::Application.routes.draw do
   resources :users
   resources :session, only: [:new, :create, :destroy]
 
+  get "/admin/:id", to: "users#admin", as: :admin_dashboard
+
+  patch "/users/:id/edit", to: "users#adminify", as: :adminify
+
   match '/signup', to: 'users#new', via: :get
   match '/signin', to: 'session#new', via: [:get, :post], as: :signin
   match '/signout', to: 'session#destroy', via: [:get, :delete], as: :signout
