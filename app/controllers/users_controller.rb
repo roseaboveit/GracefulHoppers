@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :check_for_admin, only: [:admin, :index]
+
   def show
     @user = User.find(params[:id])
   end
@@ -31,17 +33,29 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: "User #{@user.username} has been deleted"
   end
 
+  def admin
+  end
+
+  def adminify
+    @user = User.find(params[:id])
+    @user.admin = true
+    @user.save
+    redirect_to users_path
+  end
+
   private
+
+  def check_for_admin
+    unless current_user.admin?
+      redirect_to root_path, notice: "You are not authorized to view the admin dashboard"
+    end
+  end
 
   def user_params
     params.require(:user).permit(:name, :username, :twitter_uid, :email, :unit, :description, :admin)
   end
 
   def check_email
-    if @user.email == 'example@example.com'
-      @placeholder = nil
-    else
-      @placeholder = @user.email
-    end
+    @placeholder = @user.email == 'example@example.com' ? nil : @user.email
   end
 end

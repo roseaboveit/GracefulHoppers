@@ -1,0 +1,25 @@
+<div class="container">
+  <table class="table table-hover table-responsive">
+    <tr>
+      <th>Username</th>
+      <th>Admin?</th>
+    </tr>
+
+    <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= link_to user.username, user_path(user) %>
+      </td>
+      <td>
+        <% if user.admin == true %>
+          Admin
+        <% else %>
+          <%= bootstrap_form_for user, :url => edit_user_path(user) do |f| %>
+            <%= button_to "Make Admin", @user, method: :patch, class: "btn btn-info" %>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
