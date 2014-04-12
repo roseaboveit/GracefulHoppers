@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 
   def check_for_admin
     unless current_user.admin?
-      redirect_to root_path, notice: "You are not authorized to view the admin dashboard"
+      redirect_to root_path, notice: "You are not authorized to view this page"
     end
   end
 
