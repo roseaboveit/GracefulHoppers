@@ -67,12 +67,18 @@ describe UsersController do
   end
 
   describe "GET index" do
+    before do
+      session[:user_id] = user.id
+    end
+
     it "locates the users and populates a user array" do
+      User.any_instance.should_receive(:admin?).and_return(true)
       get :index
       expect(assigns(:users)).to eq([user])
     end
 
     it "renders the index page" do
+      User.any_instance.should_receive(:admin?).and_return(true)
       get :index
       expect(response).to render_template :index
     end
@@ -107,6 +113,7 @@ describe UsersController do
     before do
       session[:user_id] = user.id
     end
+    
     it "accesses the admin dashboard if current user is an admin" do
       User.any_instance.should_receive(:admin?).and_return(true)
 
