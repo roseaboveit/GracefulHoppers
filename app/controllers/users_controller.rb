@@ -46,8 +46,12 @@ class UsersController < ApplicationController
   private
 
   def check_for_admin
-    unless current_user.admin?
+    if current_user.nil?
       redirect_to root_path, notice: "You are not authorized to view this page"
+    else
+      unless current_user.admin?
+        redirect_to root_path, notice: "You are not authorized to view this page"
+      end
     end
   end
 
