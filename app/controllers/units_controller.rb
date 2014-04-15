@@ -55,6 +55,13 @@ class UnitsController < ApplicationController
     end
   end
 
+  def publish
+    @unit = Unit.find(params[:id])
+    @unit.published = true
+    @unit.save
+    redirect_to units_path
+  end
+
   private
 
   def unit_params
