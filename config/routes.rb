@@ -6,12 +6,13 @@ GracefulHoppers::Application.routes.draw do
   
   get "welcome/index"
   
-  resources :users
+  resources :users, :units
   resources :session, only: [:new, :create, :destroy]
 
   get "/admin/:id", to: "users#admin", as: :admin_dashboard
 
   patch "/users/:id/edit", to: "users#adminify", as: :adminify
+  patch "/units/:id/edit", to: "units#publish", as: :publish
 
   match '/signup', to: 'users#new', via: :get
   match '/signin', to: 'session#new', via: [:get, :post], as: :signin
