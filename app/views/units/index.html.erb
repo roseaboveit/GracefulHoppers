@@ -10,7 +10,7 @@
     <% @units.each do |unit| %>
     <tr>
       <td>
-        <%= link_to "Unit"+unit.id.to_s, unit_path(unit) %>
+        <%= link_to "Unit "+unit.id.to_s, unit_path(unit) %>
       </td>
       <td>
         <%= unit.description %>
@@ -30,4 +30,6 @@
     </tr>
     <% end %>
   </table>
+
+  <%= link_to "Add a Unit", new_unit_path %>
 </div>
