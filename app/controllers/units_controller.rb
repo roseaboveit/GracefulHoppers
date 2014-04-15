@@ -1,9 +1,9 @@
 class UnitsController < ApplicationController
 
-  before_action :check_for_admin
+  before_action :check_for_admin, only: [:new, :create, :edit, :update]
 
   def new
-    
+    @unit = Unit.new
   end
 
 
@@ -18,10 +18,28 @@ class UnitsController < ApplicationController
 
   def show
     @unit = Unit.find(params[:id])
+    if @unit.published == false #unpublished
+      check_for_admin
+    elsif current_user          #published
+      if (current_user.admin? == false) && (@unit.id > current_user.unit)
+        redirect_to unit_path(current_user.unit), notice: "Here's the unit you are currently on. Don't skip ahead."
+      else
+        render :show
+      end
+    else
+      redirect_to root_path, notice: "You are not authorized to view this page"
+    end
   end
 
   def index
     @units = Unit.all
+    if current_user && current_user.admin?
+      render :index
+    elsif current_user
+      redirect_to user_path(current_user.id), notice: "Select from your current or previously completed units"
+    else
+      redirect_to root_path, notice: "You are not authorized to view this page"
+    end
   end
 
   def edit

@@ -1,0 +1,10 @@
+<div class="container">
+  <%= bootstrap_form_for @unit do |f| %>
+
+    <%= f.text_area :description %><br />
+    <%= f.hidden_field :total_points, value: 0 %>
+    <%= f.hidden_field :published, value: false %>
+
+    <%= f.submit %>
+  <% end %>
+</div>
