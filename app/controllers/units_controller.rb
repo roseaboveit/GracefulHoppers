@@ -18,9 +18,9 @@ class UnitsController < ApplicationController
 
   def show
     @unit = Unit.find(params[:id])
-    if @unit.published == false #unpublished
+    if @unit.published == false
       check_for_admin
-    elsif current_user          #published
+    elsif current_user
       if (current_user.admin? == false) && (@unit.id > current_user.unit)
         redirect_to unit_path(current_user.unit), notice: "Here's the unit you are currently on. Don't skip ahead."
       else
