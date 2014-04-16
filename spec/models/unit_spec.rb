@@ -19,4 +19,14 @@ describe Unit do
       expect(build(:unit, published: nil)).to be_invalid
     end
   end
+
+  describe "associations" do
+
+    let(:unit) { create(:unit) }
+
+    it "responds to lessons" do
+      create(:unit)
+      expect(unit).to respond_to(:lessons)
+    end
+  end
 end
