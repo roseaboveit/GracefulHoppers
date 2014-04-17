@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+    <p>In the description field please provide a summary of the lesson and the objectives for the student to get out of the lesson. Remember to include level of proficiency expected at the end of the lesson and to not overreach in this expectation.</p>
+    <p>In the points field please enter a digit to represent the number of points the student will get upon completing this assignment. A point should be the amount of work that a pomodoro of time (25 min) can achieve.</p>
+
+    <%= bootstrap_form_for @lesson do |f| %>
+
+      <%= f.text_field :title %>
+      <%= f.text_area :description %><br />
+      <%= f.number_field :points %><br>
+      <%= f.hidden_field :path, value: params[:path] %><br>
+      <%= f.hidden_field :unit_id, value: params[:unit_id] %>
+
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>

@@ -146,6 +146,7 @@ describe UnitsController do
 
     describe "GET show" do
       context "unpublished unit" do
+
         it "redirects user to homepage" do
           get :show, id: unit.id
           expect(response).to redirect_to root_path
@@ -165,7 +166,7 @@ describe UnitsController do
           expect(response).to redirect_to unit_path(1)
         end
 
-        it "displays a notice that perhaps this unit would be better" do
+        it "displays a notice to not skip ahead" do
           get :show, id: unit.id
           expect(flash[:notice]).to eq("Here's the unit you are currently on. Don't skip ahead.")
         end

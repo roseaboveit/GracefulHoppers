@@ -5,5 +5,15 @@
     <p><%= @unit.description %></p><br>
     <h3>Total Points to Complete:</h3>
     <%= @unit.total_points %>
+
+    <hr>
+    <% if current_user.admin? %>
+      <%= link_to "Add a Lesson", new_lesson_path(unit_id: params[:id], path: "lesson") %><br>
+      <%= link_to "Add an Exercise", new_lesson_path(unit_id: params[:id], path: "exercise") %><br>
+      <%= link_to "Add a Project", new_lesson_path(unit_id: params[:id], path: "project") %><br>
+      <%= link_to "Add a Community Assignment", new_lesson_path(unit_id: params[:id], path: "community") %><br>
+      <%= link_to "Add a Vocational Assignment", new_lesson_path(unit_id: params[:id], path: "vocation") %><br>
+      <%= link_to "Add a Reflection Assignment", new_lesson_path(unit_id: params[:id], path: "reflection") %><br>
+    <% end %>
   </div>
 </div>
