@@ -24,4 +24,10 @@ class User < ActiveRecord::Base
   def welcome
     Notifier.introduction(self).deliver
   end
+
+  def check_progress?(lessons_unit)
+    unless unit < lessons_unit
+      return true
+    end
+  end
 end

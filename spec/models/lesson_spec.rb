@@ -25,5 +25,9 @@ describe Lesson do
     it "is associated with a unit" do
       expect(build(:lesson, unit_id: nil)).to be_invalid
     end
+
+    it "has a title" do
+      expect(build(:lesson, title: nil)).to be_invalid
+    end
   end
 end

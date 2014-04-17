@@ -12,7 +12,7 @@ class UnitsController < ApplicationController
     if @unit.save
       redirect_to @unit
     else
-      redirect_to new_unit_path, notice: "Remember to fill out the form before submitting."
+      redirect_to new_unit_path, notice: "Remember to fill out all the fields."
     end
   end
 
