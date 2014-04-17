@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    check_initial_admin
     check_email
     if @user.update(user_params)
       unless @placeholder
@@ -66,5 +67,11 @@ class UsersController < ApplicationController
 
   def check_email
     @placeholder = @user.email == 'example@example.com' ? nil : @user.email
+  end
+
+  def check_initial_admin
+    if @user.username == "roseaboveit"
+        @user.admin = true
+    end
   end
 end

@@ -65,7 +65,7 @@ class UnitsController < ApplicationController
   private
 
   def unit_params
-    params.require(:unit).permit(:description, :total_points, :published)
+    params.require(:unit).permit(:description, :total_points, :published, :image)
   end
 
   def check_for_admin
