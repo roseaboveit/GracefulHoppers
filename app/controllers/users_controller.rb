@@ -51,15 +51,7 @@ class UsersController < ApplicationController
 
   private
 
-  def check_for_admin
-    if current_user.nil?
-      redirect_to root_path, notice: "You are not authorized to view this page"
-    else
-      unless current_user.admin?
-        redirect_to root_path, notice: "You are not authorized to view this page"
-      end
-    end
-  end
+  
 
   def user_params
     params.require(:user).permit(:name, :username, :twitter_uid, :email, :unit, :description, :admin)

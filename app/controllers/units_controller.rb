@@ -67,15 +67,4 @@ class UnitsController < ApplicationController
   def unit_params
     params.require(:unit).permit(:description, :total_points, :published, :image)
   end
-
-  def check_for_admin
-    if current_user.nil?
-      redirect_to root_path, notice: "You are not authorized to view this page"
-    else
-      unless current_user.admin?
-        redirect_to root_path, notice: "You are not authorized to view this page"
-      end
-    end
-  end
-
 end
