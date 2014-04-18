@@ -5,6 +5,7 @@ GracefulHoppers::Application.routes.draw do
   get '/auth/:provider/callback'  => 'session#create'
   
   get "welcome/index"
+  get "/research" => 'welcome#research', as: :research
   
   resources :users, :units, :lessons
   resources :session, only: [:new, :create, :destroy]
