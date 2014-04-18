@@ -4,4 +4,6 @@ class Unit < ActiveRecord::Base
   validates_inclusion_of :published, in: [true, false]
 
   has_many :lessons
+
+  mount_uploader :image, ImageUploader
 end

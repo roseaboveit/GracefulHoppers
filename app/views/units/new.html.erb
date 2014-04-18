@@ -2,6 +2,7 @@
   <%= bootstrap_form_for @unit do |f| %>
 
     <%= f.text_area :description %><br />
+    <%= f.file_field :image %>
     <%= f.hidden_field :total_points, value: 0 %>
     <%= f.hidden_field :published, value: false %>
 
