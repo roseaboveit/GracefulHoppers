@@ -5,6 +5,10 @@ describe UsersController do
   let(:user) { create(:user) }
 
   describe "GET edit" do
+    before do
+      session[:user_id] = user.id
+    end
+
     it "locates the requested User" do
       get :edit, id: user.id
       expect(assigns(:user).id).to eq(user.id)
