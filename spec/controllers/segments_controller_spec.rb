@@ -91,11 +91,19 @@ describe SegmentsController do
     end
 
     describe "DELETE destroy" do
-      
-    end
+      before :each do
+        @segment = create(:segment)
+      end
 
-    describe "GET show" do
-      # This should render a partial?
+      it "it decreases the list count by 1" do
+        expect{ delete :destroy, id: @segment.id }.to change(Segment, :count).by(-1)
+      end
+
+      it "redirects to the lesson edit page" do
+        @lesson_id = @segment.lesson_id
+        delete :destroy, id: @segment.id
+        expect(response).to redirect_to edit_lesson_path(@lesson_id)
+      end
     end
   end
 end

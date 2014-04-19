@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :segment do
-    lesson nil
+    lesson_id 1
     content_type "markdown"
     content "MyText"
     place_value 1

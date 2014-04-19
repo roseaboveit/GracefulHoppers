@@ -1,6 +1,6 @@
 class SegmentsController < ApplicationController
 
-  before_action :check_for_admin, only: [:new, :create, :edit, :update]
+  before_action :check_for_admin, only: [:new, :create, :edit, :update, :destroy]
 
   def new
     @segment = Segment.new
@@ -27,6 +27,13 @@ class SegmentsController < ApplicationController
     else
       redirect_to edit_segment_path(@segment.id)
     end
+  end
+
+  def destroy
+    @segment = Segment.find(params[:id])
+    @lesson_id = @segment.lesson_id
+    @segment.delete
+    redirect_to edit_lesson_path(@lesson_id)
   end
 
   private
