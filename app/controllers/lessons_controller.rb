@@ -17,6 +17,7 @@ class LessonsController < ApplicationController
 
   def edit
     @lesson = Lesson.find(params[:id])
+    @segments = Segment.where("lesson_id = ?", params[:id])
   end
 
   def update
