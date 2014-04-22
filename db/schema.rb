@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418193719) do
+ActiveRecord::Schema.define(version: 20140422164450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20140418193719) do
     t.integer  "place_value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image"
   end
 
   add_index "segments", ["lesson_id"], name: "index_segments_on_lesson_id", using: :btree

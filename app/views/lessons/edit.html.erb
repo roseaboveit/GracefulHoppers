@@ -10,5 +10,10 @@
 
       <%= f.submit %>
     <% end %>
+
+    <%= link_to "Go to Lesson Page", @lesson %><br>
+
+    <%= link_to "Add a Markdown Segment", new_segment_path(lesson_id: params[:id], content_type: "markdown") %><br>
+    <%= link_to "Add an Image Segment", new_segment_path(lesson_id: params[:id], content_type: "image") %><br>
   </div>
 </div>

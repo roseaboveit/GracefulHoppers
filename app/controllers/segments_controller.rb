@@ -39,6 +39,6 @@ class SegmentsController < ApplicationController
   private
 
   def segment_params
-    params.require(:segment).permit(:content, :content_type, :lesson_id, :place_value)
+    params.require(:segment).permit(:content, :content_type, :lesson_id, :place_value, :image)
   end
 end

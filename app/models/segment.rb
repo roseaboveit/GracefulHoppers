@@ -4,4 +4,6 @@ class Segment < ActiveRecord::Base
   validates_inclusion_of :content_type, in: ["image", "markdown"]
 
   belongs_to :lesson
+
+  mount_uploader :image, ImageUploader
 end
