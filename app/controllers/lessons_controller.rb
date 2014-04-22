@@ -32,7 +32,7 @@ class LessonsController < ApplicationController
 
   def show
     @lesson = Lesson.find(params[:id])
-    @segments = Segment.where("lesson_id = ?", params[:id])
+    @segments = Segment.where("lesson_id = ?", params[:id]).sort_by { |k| k["place_value"] }
     if current_user && current_user.admin?
       render :show
     elsif current_user && @lesson.unit_published?
