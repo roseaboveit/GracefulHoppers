@@ -28,7 +28,7 @@ describe LessonsController do
 
         it "renders the lesson show page" do
           post :create, lesson: attributes_for(:lesson)
-          expect(response).to render_template :show
+          expect(response).to redirect_to edit_lesson_path(lesson)
         end
       end
 
