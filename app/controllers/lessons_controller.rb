@@ -9,7 +9,7 @@ class LessonsController < ApplicationController
   def create
     @lesson = Lesson.new(lesson_params)
     if @lesson.save
-      render :show
+      redirect_to edit_lesson_path(@lesson)
     else
       redirect_to new_lesson_path, notice: "Remember to fill out all the fields"
     end
