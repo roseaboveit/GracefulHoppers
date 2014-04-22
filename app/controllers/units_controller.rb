@@ -18,6 +18,7 @@ class UnitsController < ApplicationController
 
   def show
     @unit = Unit.find(params[:id])
+    @lessons = Lesson.where("unit_id = ?", params[:id])
     if @unit.published == false
       check_for_admin
     elsif current_user
@@ -67,15 +68,4 @@ class UnitsController < ApplicationController
   def unit_params
     params.require(:unit).permit(:description, :total_points, :published, :image)
   end
-
-  def check_for_admin
-    if current_user.nil?
-      redirect_to root_path, notice: "You are not authorized to view this page"
-    else
-      unless current_user.admin?
-        redirect_to root_path, notice: "You are not authorized to view this page"
-      end
-    end
-  end
-
 end

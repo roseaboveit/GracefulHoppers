@@ -5,7 +5,11 @@
       <%= image_tag @unit.image_url(:display).to_s %>
     </p>
     <h3>Description:</h3><br>
-    <p><%= @unit.description %></p><br>
+    <p><%= markdown(@unit.description) %></p><br>
+    <h3>Lessons:</h3><br>
+      <% @lessons.each do |lesson| %>
+        <%= link_to "#{lesson.path.titleize}:   #{lesson.title}", lesson %>
+      <% end %>
     <h3>Total Points to Complete:</h3>
     <%= @unit.total_points %>
 

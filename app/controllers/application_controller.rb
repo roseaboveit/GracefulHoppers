@@ -10,4 +10,14 @@ class ApplicationController < ActionController::Base
   end
   
   helper_method :current_user
+
+  def check_for_admin
+    if current_user.nil?
+      redirect_to root_path, notice: "You are not authorized to view this page"
+    else
+      unless current_user.admin?
+        redirect_to root_path, notice: "You are not authorized to view this page"
+      end
+    end
+  end
 end

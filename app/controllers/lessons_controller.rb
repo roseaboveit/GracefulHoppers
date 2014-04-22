@@ -31,6 +31,7 @@ class LessonsController < ApplicationController
 
   def show
     @lesson = Lesson.find(params[:id])
+    @segments = Segment.where("lesson_id = ?", params[:id])
     if current_user && current_user.admin?
       render :show
     elsif current_user && @lesson.unit_published?
@@ -50,15 +51,5 @@ class LessonsController < ApplicationController
 
   def lesson_params
     params.require(:lesson).permit(:points, :unit_id, :path, :description, :title)
-  end
-
-  def check_for_admin
-    if current_user.nil?
-      redirect_to root_path, notice: "You are not authorized to view this page"
-    else
-      unless current_user.admin?
-        redirect_to root_path, notice: "You are not authorized to view this page"
-      end
-    end
   end
 end

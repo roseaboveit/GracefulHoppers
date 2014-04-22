@@ -1,0 +1,6 @@
+<% if segment.content_type == "markdown" %>
+  <%= markdown(segment.content) %>
+<% elsif segment.content_type == "image" %>
+  <%= image_tag segment.image_url(:display).to_s %>
+  <%= markdown(segment.content) %>
+<% end %>

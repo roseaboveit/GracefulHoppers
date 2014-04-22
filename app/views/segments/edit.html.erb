@@ -1,0 +1,29 @@
+<% if @segment.content_type == "image" %>
+
+  <%= bootstrap_form_for @segment do |f| %>
+
+    <%= f.file_field :content %>
+    <%= f.hidden_field :lesson_id, value: params[:lesson_id] %>
+    <%= f.hidden_field :place_value, value: 0 %>
+    <%= f.hidden_field :content_type, value: "image" %>
+
+    <%= f.submit %>
+  <% end %>
+
+<% elsif @segment.content_type == "markdown" %>
+
+  <%= bootstrap_form_for @segment do |f| %>
+
+    <%= f.text_area :content %><br />
+    <%= f.hidden_field :lesson_id, value: params[:lesson_id] %>
+    <%= f.hidden_field :place_value, value: 0 %>
+    <%= f.hidden_field :content_type, value: "markdown" %>
+
+    <%= f.submit %>
+  <% end %>
+
+<% else %>
+
+  <p>Something went wrong</p>
+
+<% end %>
