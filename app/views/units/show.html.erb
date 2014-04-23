@@ -10,8 +10,6 @@
       <% @lessons.each do |lesson| %>
         <%= link_to "#{lesson.path.titleize}:   #{lesson.title}", lesson %><br>
       <% end %>
-    <h3>Total Points to Complete:</h3>
-    <%= @unit.total_points %>
 
     <hr>
     <% if current_user.admin? %>
