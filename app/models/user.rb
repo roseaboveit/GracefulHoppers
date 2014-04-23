@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
       user.name = auth['info']['name']
       user.twitter_uid = auth['uid']
       user.email = 'example@example.com'
-      user.unit = 0
+      user.unit = 1
     end
   end
 
