@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @units = Unit.where("id <= ?", @user.unit)
   end
 
   def index

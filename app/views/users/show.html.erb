@@ -7,4 +7,9 @@
   <div>
     <%= @user.description %>
   </div>
+  <div>
+    <% @units.each do |unit|  %>
+      <%= link_to "Unit #{unit.id}", unit_path(unit) %>
+    <% end %>
+  </div>
 </div>
