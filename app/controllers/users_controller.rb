@@ -3,6 +3,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if @user.unit == 0
+      @user.unit = 1
+      @user.save
+    end
   end
 
   def index
