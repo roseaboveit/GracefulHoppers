@@ -19,6 +19,7 @@ class UnitsController < ApplicationController
   def show
     @unit = Unit.find(params[:id])
     @lessons = Lesson.where("unit_id = ?", params[:id])
+    @to_do_lessons = remaining_lessons(params[:id], current_user.id)
     if @unit.published == false
       check_for_admin
     elsif current_user
@@ -67,5 +68,18 @@ class UnitsController < ApplicationController
 
   def unit_params
     params.require(:unit).permit(:description, :total_points, :published, :image)
+  end
+
+
+  def remaining_lessons(unit_id, user_id)
+    @lessons = Lesson.where("unit_id = ?", params[:id])
+    @remaining = []
+    @lessons.each do |lesson|
+      @completed = CompletedLesson.where("lesson_id = ? AND user_id = ?", lesson.id, current_user.id).count
+      if @completed == 0
+        @remaining << lesson
+      end
+    end
+    @remaining
   end
 end

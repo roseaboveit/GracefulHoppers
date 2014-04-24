@@ -13,4 +13,12 @@ class Lesson < ActiveRecord::Base
     @unit = Unit.find(unit)
     @unit.published?
   end
+
+  def completed?
+    if CompletedLesson.where("user_id = ? && lesson_id = ?", current_user.id, self.id).count > 0
+      true
+    else
+      false
+    end
+  end
 end

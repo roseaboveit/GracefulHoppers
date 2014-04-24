@@ -5,7 +5,7 @@ class CompletedLessonsController < ApplicationController
     @completed_lesson.user_id = current_user.id
     @completed_lesson.lesson_id = params[:lesson_id]
     @completed_lesson.save
-    redirect_to user_path(current_user)
+    redirect_to unit_path(current_user.unit)
   end
 
   private

@@ -6,7 +6,17 @@
     </p>
     <h3>Description:</h3><br>
     <p><%= markdown(@unit.description) %></p><br>
-    <h3>Lessons:</h3><br>
+    <% if @to_do_lessons.empty? %>
+      Congrats! You are now ready for Unit 2!
+      Unfortunately Unit 2 is still being written. Please be patient.
+    <% else %>
+    <h3>Lessons to Complete:</h3><br>
+      <% @to_do_lessons.each do |lesson| %>
+        <%= link_to "#{lesson.path.titleize}:   #{lesson.title}", lesson %><br>
+      <% end %>
+    <% end %>
+
+    <h3>All lessons</h3>
       <% @lessons.each do |lesson| %>
         <%= link_to "#{lesson.path.titleize}:   #{lesson.title}", lesson %><br>
       <% end %>

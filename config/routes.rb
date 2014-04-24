@@ -14,6 +14,7 @@ GracefulHoppers::Application.routes.draw do
   get "/admin/:id", to: "users#admin", as: :admin_dashboard
 
   patch "/users/:id/edit", to: "users#adminify", as: :adminify
+  patch "/units/:id", to: "users#level_up", as: :level_up
   patch "/units/:id/edit", to: "units#publish", as: :publish
 
   match '/signup', to: 'users#new', via: :get
