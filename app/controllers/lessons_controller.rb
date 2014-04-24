@@ -34,7 +34,7 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     @segments = Segment.where("lesson_id = ?", params[:id]).sort_by { |k| k["place_value"] }
     @completed_lesson = CompletedLesson.new
-
+    
     if current_user && current_user.admin?
       render :show
     elsif current_user && @lesson.unit_published?
