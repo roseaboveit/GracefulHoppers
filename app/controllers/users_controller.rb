@@ -51,10 +51,11 @@ class UsersController < ApplicationController
   end
 
   def complete_lesson
-    @completed_lesson = CompletedLesson.new(completed_lesson_params)
+    @completed_lesson = CompletedLesson.new
     @completed_lesson.user_id = current_user.id
+    @completed_lesson.lesson_id = params[:id]
     @completed_lesson.save
-    redirect_to users_path(current_user)
+    redirect_to user_path(current_user)
   end
 
   private

@@ -9,6 +9,7 @@ GracefulHoppers::Application.routes.draw do
   
   resources :users, :units, :lessons, :segments
   resources :session, only: [:new, :create, :destroy]
+  resources :completed_lessons, only: [:create]
 
   get "/admin/:id", to: "users#admin", as: :admin_dashboard
 

@@ -54,8 +54,4 @@ class LessonsController < ApplicationController
   def lesson_params
     params.require(:lesson).permit(:points, :unit_id, :path, :description, :title)
   end
-
-  def completed_lesson_params
-    params.require(:completed_lesson).permit(:user_id, :lesson_id)
-  end
 end

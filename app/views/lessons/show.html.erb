@@ -6,8 +6,13 @@
 
     <%= render partial: "segment", collection: @segments %>
 
-    <%= bootstrap_form_for @completed_lesson, :url => complete_lesson_path(@lesson) do |f| %>
-      <%= button_to "Completed!", @user, method: :post, class: "btn btn-info" %>
+    <%= bootstrap_form_for @completed_lesson do |f| %>
+      <%= button_to 'Finished!', {controller: "completed_lessons", action: "create",
+                                  completed_lesson: @completed_lesson,
+                                  lesson_id: @lesson.id, 
+                                  user_id: session[:user_id]},
+                                  method: :post,
+                                  class: "btn btn-info"  %>
     <% end %>
   </div>
 </div>
