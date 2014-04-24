@@ -6,6 +6,8 @@ class Lesson < ActiveRecord::Base
   validates_inclusion_of :path, in: ["vocation", "reflection", "lesson", "exercise", "project", "community"]
 
   belongs_to :unit
+  has_many :completed_lessons
+  has_many :users, through: :completed_lessons
 
   def unit_published?
     @unit = Unit.find(unit)

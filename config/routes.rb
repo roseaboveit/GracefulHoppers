@@ -19,6 +19,8 @@ GracefulHoppers::Application.routes.draw do
   match '/signin', to: 'session#new', via: [:get, :post], as: :signin
   match '/signout', to: 'session#destroy', via: [:get, :delete], as: :signout
 
+  post "/lessons/:id/", to: "users#complete_lesson", as: :completed_lesson
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

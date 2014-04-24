@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   validates :twitter_uid, presence: true
   validates :unit, presence: true, numericality: true
 
+  has_many :completed_lessons
+  has_many :lessons, through: :completed_lesson
+
 
   def self.from_omniauth(auth)
     User.where(twitter_uid: auth['uid']).take || create_from_omniauth(auth)

@@ -50,9 +50,18 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def complete_lesson
+    @completed_lesson = CompletedLesson.new(completed_lesson_params)
+    @completed_lesson.user_id = current_user.id
+    @completed_lesson.save
+    redirect_to users_path(current_user)
+  end
+
   private
 
-  
+  def completed_lesson_params
+    params.require(:completed_lesson).permit(:user_id, :lesson_id)  
+  end  
 
   def user_params
     params.require(:user).permit(:name, :username, :twitter_uid, :email, :unit, :description, :admin)

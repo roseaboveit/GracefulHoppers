@@ -5,5 +5,9 @@
     <p><%= @lesson.description %></p>
 
     <%= render partial: "segment", collection: @segments %>
+
+    <%= bootstrap_form_for @completed_lesson, :url => complete_lesson_path(@lesson) do |f| %>
+      <%= button_to "Completed!", @user, method: :post, class: "btn btn-info" %>
+    <% end %>
   </div>
 </div>
