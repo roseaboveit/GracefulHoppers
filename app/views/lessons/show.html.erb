@@ -5,5 +5,13 @@
     <p><%= @lesson.description %></p>
 
     <%= render partial: "segment", collection: @segments %>
+    <%= button_to 'Finished!', { controller: "completed_lessons", action: "create",
+                            completed_lesson: @completed_lesson,
+                            lesson_id: @lesson.id, 
+                            user_id: session[:user_id]},
+                            method: :post,
+                            class: "btn btn-info"  %>
+
+    
   </div>
 </div>

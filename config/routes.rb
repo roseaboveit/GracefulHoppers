@@ -9,15 +9,19 @@ GracefulHoppers::Application.routes.draw do
   
   resources :users, :units, :lessons, :segments
   resources :session, only: [:new, :create, :destroy]
+  resources :completed_lessons, only: [:create]
 
   get "/admin/:id", to: "users#admin", as: :admin_dashboard
 
   patch "/users/:id/edit", to: "users#adminify", as: :adminify
+  patch "/units/:id", to: "users#level_up", as: :level_up
   patch "/units/:id/edit", to: "units#publish", as: :publish
 
   match '/signup', to: 'users#new', via: :get
   match '/signin', to: 'session#new', via: [:get, :post], as: :signin
   match '/signout', to: 'session#destroy', via: [:get, :delete], as: :signout
+
+  post "/lessons/:id/", to: "users#complete_lesson", as: :completed_lesson
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

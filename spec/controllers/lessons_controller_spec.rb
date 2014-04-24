@@ -26,9 +26,9 @@ describe LessonsController do
           expect { post :create, lesson: attributes_for(:lesson) }.to change(Lesson, :count).by(1)
         end
 
-        it "renders the lesson show page" do
+        it "renders the lesson edit page" do
           post :create, lesson: attributes_for(:lesson)
-          expect(response).to redirect_to edit_lesson_path(lesson)
+          expect(response).to redirect_to edit_lesson_path(assigns(:lesson).id)
         end
       end
 
