@@ -19,7 +19,9 @@ class UnitsController < ApplicationController
   def show
     @unit = Unit.find(params[:id])
     @lessons = Lesson.where("unit_id = ?", params[:id])
-    @to_do_lessons = remaining_lessons(params[:id], current_user.id)
+    if current_user
+      @to_do_lessons = remaining_lessons(params[:id], current_user.id)
+    end
     if @unit.published == false
       check_for_admin
     elsif current_user
