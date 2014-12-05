@@ -3,6 +3,9 @@
 
     <h2><%= @lesson.title %></h2>
     <p><%= @lesson.description %></p>
+    <% if current_user.admin? %>
+    <%= link_to 'Edit', edit_lesson_path(params[:id]), class: "btn btn-info" %>
+    <% end %>
 
     <%= render partial: "segment", collection: @segments %>
     <%= button_to 'Finished!', { controller: "completed_lessons", action: "create",
@@ -10,8 +13,6 @@
                             lesson_id: @lesson.id, 
                             user_id: session[:user_id]},
                             method: :post,
-                            class: "btn btn-info"  %>
-
-    
+                            class: "btn btn-info"  %>    
   </div>
 </div>

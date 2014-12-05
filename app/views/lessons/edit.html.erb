@@ -13,7 +13,7 @@
 
     <%= link_to "Go to Lesson Page", @lesson %><br>
     <% @segments.each do |segment| %>
-      <%= link_to "#{segment.content_type.titleize} #{segment.place_value}", edit_segment_path(segment) %><br>
+      <%= link_to "#{segment.content_type.titleize} #{segment.place_value}", edit_segment_path(segment), class: "btn btn-info" %><br>
     <% end %>
 
     <%= link_to "Add a Markdown Segment", new_segment_path(lesson_id: params[:id], content_type: "markdown") %><br>
