@@ -13,13 +13,13 @@
       Unfortunately Unit 2 is still being written. Please be patient.
     <% else %>
     <h3>Lessons to Complete:</h3><br>
-      <% @to_do_lessons.each do |lesson| %>
+      <% @to_do_lessons.sort_by! {|l| l.placement}.each do |lesson| %>
         <%= link_to "#{lesson.path.titleize}:   #{lesson.title}", lesson %><br>
       <% end %>
     <% end %>
 
     <h3>All lessons</h3>
-      <% @lessons.each do |lesson| %>
+      <% @lessons.sort_by! {|l| l.placement}.each do |lesson| %>
         <%= link_to "#{lesson.path.titleize}:   #{lesson.title}", lesson %><br>
       <% end %>
 
